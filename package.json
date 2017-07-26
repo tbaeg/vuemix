@@ -1,0 +1,32 @@
+{
+  "name": "vuemix",
+  "version": "1.0.0",
+  "description": "Stupid simple store library for mixin based state management in Vue.js",
+  "main": "vuemix.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tbaeg/vuemix.git"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "vuemix",
+    "store",
+    "state",
+    "mixin",
+    "management"
+  ],
+  "author": "Tony Baeg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tbaeg/vuemix/issues"
+  },
+  "homepage": "https://github.com/tbaeg/vuemix#readme"
+}
