@@ -1,8 +1,9 @@
 # Vuemix
 Stupid simple store library for mixin based state management in Vue.js
 
+<a href="https://www.npmjs.com/package/vuemix"><img src="https://img.shields.io/badge/size-<2kB-green.svg" alt="License"></a>
 <a href="https://www.npmjs.com/package/vuemix"><img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version"></a>
-<a href="https://www.npmjs.com/package/vuemix"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+<a href="https://www.npmjs.com/package/vuemix"><img src="https://img.shields.io/badge/license-MIT-red.svg" alt="License"></a>
 
 ## Requirements
 * `Vue` 2.0.0+
@@ -35,16 +36,18 @@ Stupid simple store library for mixin based state management in Vue.js
                     store.value = value;
                 },
                 increment: function (store) {
+                    console.log('Store method: increment');
                     store.value = store.value + 1;
                 }
             },
             component: {
                 beforeMount: function () {
-                    console.log('Method `beforeMount` added as a standard mixin method!');
+                    console.log('Mixin method: beforeMount');
                 },
                 methods: {
                     increment: function() {
-                        console.log('Method `increment` called as a component mixin method, not a store method.');
+                        console.log('Mixin method: increment');
+                        this.test.value++;
                     }
                 }
             }
@@ -93,7 +96,7 @@ const SCHEMA = {
     component: {
         methods: {
             setValue(value) {
-                console.log('Method `setValue` bound to Vue component!');
+                console.log('Mixin method: setValue', value);
             }
         }
     }
@@ -158,16 +161,18 @@ var SCHEMA = {
             store.value = value;
         },
         increment: function (store) {
+            console.log('Store method: increment');
             store.value = store.value + 1;
         }
     },
     component: {
         beforeMount: function () {
-            console.log('Method `beforeMount` added as a standard mixin method!');
+            console.log('Mixin method: beforeMount');
         },
         methods: {
             increment: function() {
-                console.log('Method `increment` called as a component mixin method, not a store method.');
+                console.log('Mixin method: increment');
+                this.test.value++;
             }
         }
     }
@@ -225,7 +230,7 @@ Vue.component('test3', {
     },
     methods: {
         clicked: function () {
-            instanceStore.increment();
+            this.increment();
         }
     }
 });
