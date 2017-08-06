@@ -25,7 +25,7 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
-    <script src="../vuemix.js"></script>
+    <script src="../dist/vuemix.dist.js"></script>
 
     <script type="text/x-template" id="test">
         <div>
@@ -40,6 +40,8 @@
     </script>
 
     <script>
+        var Vuemix = window.Vuemix.default;
+
         // Helper function for generating new test store state
         function createTestStore() {
             return {
@@ -57,16 +59,18 @@
                     store.value = value;
                 },
                 increment: function (store) {
+                    console.log('Store method: increment');
                     store.value = store.value + 1;
                 }
             },
             component: {
                 beforeMount: function () {
-                    console.log('Method `beforeMount` added as a standard mixin method!');
+                    console.log('Mixin method: beforeMount');
                 },
                 methods: {
                     increment: function() {
-                        console.log('Method `increment` called as a component mixin method, not a store method.');
+                        console.log('Mixin method: increment');
+                        this.test.value++;
                     }
                 }
             }
@@ -124,7 +128,6 @@
             },
             methods: {
                 clicked: function () {
-                    instanceStore.increment();
                     this.increment();
                 }
             }

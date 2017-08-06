@@ -1,8 +1,8 @@
 {
   "name": "vuemix",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Stupid simple store library for mixin based state management in Vue.js",
-  "main": "vuemix.js",
+  "main": "dist/vuemix.dist.js",
   "directories": {
     "example": "examples",
     "test": "tests"
@@ -28,5 +28,11 @@
   "bugs": {
     "url": "https://github.com/tbaeg/vuemix/issues"
   },
-  "homepage": "https://github.com/tbaeg/vuemix#readme"
+  "homepage": "https://github.com/tbaeg/vuemix#readme",
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "webpack": "^3.4.1"
+  }
 }
