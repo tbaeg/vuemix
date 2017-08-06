@@ -1,6 +1,6 @@
 {
   "name": "vuemix",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Stupid simple store library for mixin based state management in Vue.js",
   "main": "vuemix.js",
   "directories": {
