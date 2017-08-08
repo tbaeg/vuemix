@@ -2,7 +2,7 @@
 Stupid simple store library for mixin based state management in Vue.js
 
 <a href="https://www.npmjs.com/package/vuemix"><img src="https://img.shields.io/badge/size-<2kB-green.svg" alt="License"></a>
-<a href="https://www.npmjs.com/package/vuemix"><img src="https://img.shields.io/badge/version-1.1.1-blue.svg" alt="Version"></a>
+<a href="https://www.npmjs.com/package/vuemix"><img src="https://img.shields.io/badge/version-2.0.0-blue.svg" alt="Version"></a>
 <a href="https://www.npmjs.com/package/vuemix"><img src="https://img.shields.io/badge/license-MIT-red.svg" alt="License"></a>
 
 ## Requirements
@@ -22,10 +22,11 @@ Stupid simple store library for mixin based state management in Vue.js
 `Vuemix.create(schema, store, as)`
 
 * Parameter: `schema`
+    * REQUIRED
     * Description:
         * `methods`
             * Functions that execute actions/mutations to your state, but are not required. All functions recieve the store as the first argument of the function. As a bonus, functions also have a `this` context of the `Vue` component itself; so, one is able to access component instance specific properties/methods.
-        * `component`
+        * `mixin`
             * Properties that will be directly bound to the `Vue` component like any other mixin.
     * Type: `Object`.
     * Example:
@@ -33,14 +34,14 @@ Stupid simple store library for mixin based state management in Vue.js
         var SCHEMA = {
             methods: {
                 updateMessage: function (store, value) {
-                    store.value = value;
+                    store.state.value = value;
                 },
                 increment: function (store) {
                     console.log('Store method: increment');
-                    store.value = store.value + 1;
+                    store.methods.updateMessage(store.state.value + 1);
                 }
             },
-            component: {
+            mixin: {
                 beforeMount: function () {
                     console.log('Mixin method: beforeMount');
                 },
@@ -55,6 +56,7 @@ Stupid simple store library for mixin based state management in Vue.js
         ```
 
 * Parameter: `store`
+    * REQUIRED
     * Description: Object maintaining the source of truth for the store.
     * Type: `Object`.
     * Example:
@@ -65,6 +67,7 @@ Stupid simple store library for mixin based state management in Vue.js
         ```
 
 * Parameter: `as`
+    * OPTIONAL
     * Description: Property name the store will bind as to the `Vue` component.
     * Type: `String`.
     * Example:
@@ -89,7 +92,7 @@ function createTestStore() {
 const GLOBAL_STORE = createTestStore();
 const SCHEMA = {
     methods: {
-        setValue(store, value) {
+        setValue({state}, value) {
             store.value = value;
         }
     },
@@ -128,7 +131,7 @@ export default {
     mixins: [testStore],
     template: '#test',
     methods: {
-        clicked: function () {
+        clicked() {
             console.log(this.myTest.value); // 0
             testStore.setValue(1);
             console.log(this.myTest.value); // 1
@@ -158,14 +161,14 @@ var SCHEMA = {
     // methods to the component itself preventing name collisions! Nice!
     methods: {
         updateMessage: function (store, value) {
-            store.value = value;
+            store.state.value = value;
         },
         increment: function (store) {
             console.log('Store method: increment');
-            store.value = store.value + 1;
+            store.methods.updateMessage(store.state.value + 1);
         }
     },
-    component: {
+    mixin: {
         beforeMount: function () {
             console.log('Mixin method: beforeMount');
         },
@@ -230,7 +233,7 @@ Vue.component('test3', {
     },
     methods: {
         clicked: function () {
-            this.increment();
+            instanceStore.increment();
         }
     }
 });

@@ -12,7 +12,7 @@ const Vuemix = {
             throw Error('Second parameter `store` is required and should be a plain Object.');
         }
 
-        const storeMixin = schema.component ? Object.assign({}, schema.component) : {};
+        const storeMixin = schema.mixin ? Object.assign({}, schema.mixin) : {};
 
         storeMixin.beforeCreate = function () {
             const self = this;
@@ -37,11 +37,12 @@ const Vuemix = {
             if (schema.methods) {
                 const _methods = {};
                 const methods = schema.methods;
+                const args = {state: store, methods: _methods};
 
                 for (const key in methods) {
                     if (methods.hasOwnProperty(key)) {
                         if (typeof methods[key] === 'function') {
-                            _methods[key] = methods[key].bind(self, store);
+                            _methods[key] = methods[key].bind(self, args);
                         } else {
                             throw Error('Ensure properties for `methods` are all functions.');
                         }
