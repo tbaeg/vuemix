@@ -2,7 +2,7 @@
 Stupid simple store library for mixin based state management in Vue.js
 
 <a href="https://www.npmjs.com/package/vuemix"><img src="https://img.shields.io/badge/size-<2kB-green.svg" alt="License"></a>
-<a href="https://www.npmjs.com/package/vuemix"><img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version"></a>
+<a href="https://www.npmjs.com/package/vuemix"><img src="https://img.shields.io/badge/version-1.1.1-blue.svg" alt="Version"></a>
 <a href="https://www.npmjs.com/package/vuemix"><img src="https://img.shields.io/badge/license-MIT-red.svg" alt="License"></a>
 
 ## Requirements
