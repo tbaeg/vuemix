@@ -56,14 +56,14 @@
             // methods to the component itself preventing name collisions! Nice!
             methods: {
                 updateMessage: function (store, value) {
-                    store.value = value;
+                    store.state.value = value;
                 },
                 increment: function (store) {
                     console.log('Store method: increment');
-                    store.value = store.value + 1;
+                    store.methods.updateMessage(store.state.value + 1);
                 }
             },
-            component: {
+            mixin: {
                 beforeMount: function () {
                     console.log('Mixin method: beforeMount');
                 },
@@ -128,7 +128,7 @@
             },
             methods: {
                 clicked: function () {
-                    this.increment();
+                    instanceStore.increment();
                 }
             }
         });
